@@ -53,4 +53,4 @@
         type: 'submit'
         className: 'btn btn-primary'
         disabled: !@valid()
-        'Create record'
+        'Add Transaction'

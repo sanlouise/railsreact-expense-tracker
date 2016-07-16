@@ -39,8 +39,11 @@
       className: 'records col-md-8 col-md-offset-2'
       React.DOM.h2
         className: 'title text-center'
-        'Records'
+        'Overview'
       React.DOM.hr null
+      React.DOM.h4
+        className: 'title text-center'
+        'New Transaction'
       React.createElement RecordForm, handleNewRecord: @addRecord
       React.DOM.hr null
       React.DOM.div
@@ -56,7 +59,7 @@
             React.DOM.th null, 'Date'
             React.DOM.th null, 'Title'
             React.DOM.th null, 'Amount'
-            React.DOM.th null, 'Actions'
+            React.DOM.th null, ''
         React.DOM.tbody null,
           for record in @state.records
             React.createElement Record, key: record.id, record: record, handleDeleteRecord: @deleteRecord, handleEditRecord: @updateRecord
