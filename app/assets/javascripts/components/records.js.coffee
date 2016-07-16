@@ -36,30 +36,33 @@
 
   render: ->
     React.DOM.div
-      className: 'records col-md-8 col-md-offset-2'
-      React.DOM.h2
-        className: 'title text-center'
-        'Overview'
-      React.DOM.hr null
-      React.DOM.h4
-        className: 'title text-center'
-        'New Transaction'
-      React.createElement RecordForm, handleNewRecord: @addRecord
-      React.DOM.hr null
-      React.DOM.div
-        className: 'row'
-        React.createElement AmountBox, type: 'success', amount: @credits(), text: 'Credit'
-        React.createElement AmountBox, type: 'danger', amount: @debits(), text: 'Debit'
-        React.createElement AmountBox, type: 'info', amount: @balance(), text: 'Balance'
+      className: 'records col-md-10 col-md-offset-1'
 
-      React.DOM.table
-        className: 'table table-striped'
-        React.DOM.thead null,
-          React.DOM.tr null,
-            React.DOM.th null, 'Date'
-            React.DOM.th null, 'Title'
-            React.DOM.th null, 'Amount'
-            React.DOM.th null, ''
-        React.DOM.tbody null,
-          for record in @state.records
-            React.createElement Record, key: record.id, record: record, handleDeleteRecord: @deleteRecord, handleEditRecord: @updateRecord
+      React.DOM.div
+        className: 'records col-md-8 col-md-offset-2'
+        React.DOM.h1
+          className: 'title text-center'
+          'Overview'
+        React.DOM.hr null
+        React.DOM.h4
+          className: 'title text-center'
+          'New Transaction'
+        React.createElement RecordForm, handleNewRecord: @addRecord
+        React.DOM.hr null
+        React.DOM.div
+          className: 'row text-center'
+          React.createElement AmountBox, type: 'success', amount: @credits(), text: 'Credit'
+          React.createElement AmountBox, type: 'danger', amount: @debits(), text: 'Debit'
+          React.createElement AmountBox, type: 'info', amount: @balance(), text: 'Balance'
+
+        React.DOM.table
+          className: 'table table-striped'
+          React.DOM.thead null,
+            React.DOM.tr null,
+              React.DOM.th null, 'Date'
+              React.DOM.th null, 'Title'
+              React.DOM.th null, 'Amount'
+              React.DOM.th null, ''
+          React.DOM.tbody null,
+            for record in @state.records
+              React.createElement Record, key: record.id, record: record, handleDeleteRecord: @deleteRecord, handleEditRecord: @updateRecord

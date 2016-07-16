@@ -1,3 +1,27 @@
 // Place all the styles related to the Records controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+.records.col-md-10.col-md-offset-1 {
+	margin-top: 30px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	font-family: 'Roboto', sans-serif;
+}
+
+.row {
+	padding: 20px 20px 20px 20px;
+}
+
+.form-group {
+	padding-right: 10px;
+	padding-top: 15px;
+}
+
+.btn.btn-primary {
+	padding-left: 10px;
+	margin-bottom: -14px;
+}
+
