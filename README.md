@@ -12,7 +12,7 @@ bundle exec rake db:migrate
 rails s
 ```
 
-The app will now be running on localhost:3000.
+The app will now be running on localhost:3000/records.
 
 ## Contributing
 
