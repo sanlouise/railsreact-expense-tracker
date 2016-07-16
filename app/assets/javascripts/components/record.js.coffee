@@ -4,21 +4,62 @@
 	    handleToggle: (e) ->
 	      e.preventDefault()
 	      @setState edit: !@state.edit
-		    handleDelete: (e) ->
-		      e.preventDefault()
-		      $.ajax
-		        method: 'DELETE'
-		        url: "/records/#{ @props.record.id }"
-		        dataType: 'JSON'
-		        success: () =>
-		          @props.handleDeleteRecord @props.record
-		    render: ->
-		      React.DOM.tr null,
-		        React.DOM.td null, @props.record.date
-		        React.DOM.td null, @props.record.title
-		        React.DOM.td null, amountFormat(@props.record.amount)
-		        React.DOM.td null,
-		          React.DOM.a
-		            className: 'btn btn-danger'
-		            onClick: @handleDelete
-		            'Delete'
+    handleDelete: (e) ->
+      e.preventDefault()
+      $.ajax
+        method: 'DELETE'
+        url: "/records/#{ @props.record.id }"
+        dataType: 'JSON'
+        success: () =>
+        @props.handleDeleteRecord @props.record
+
+   render: ->
+    if @state.edit
+      @recordForm()
+    else
+      @recordRow()
+
+  recordForm: ->
+    React.DOM.tr null,
+      React.DOM.td null,
+        React.DOM.input
+          className: 'form-control'
+          type: 'text'
+          defaultValue: @props.record.date
+          ref: 'date'
+      React.DOM.td null,
+        React.DOM.input
+          className: 'form-control'
+          type: 'text'
+          defaultValue: @props.record.title
+          ref: 'title'
+      React.DOM.td null,
+        React.DOM.input
+          className: 'form-control'
+          type: 'number'
+          defaultValue: @props.record.amount
+          ref: 'amount'
+      React.DOM.td null,
+        React.DOM.a
+          className: 'btn btn-default btn-xs'
+          onClick: @handleEdit
+          'Update'
+        React.DOM.a
+          className: 'btn btn-danger btn-xs'
+          onClick: @handleToggle
+          'Cancel'
+
+  	recordRow: ->
+    React.DOM.tr null,
+      React.DOM.td null, @props.record.date
+      React.DOM.td null, @props.record.title
+      React.DOM.td null, amountFormat(@props.record.amount)
+      React.DOM.td null,
+        React.DOM.a
+          className: 'btn btn-default btn-xs'
+          onClick: @handleToggle
+          'Edit'
+        React.DOM.a
+          className: 'btn btn-danger btn-xs'
+          onClick: @handleDelete
+          'Delete'
