@@ -52,8 +52,8 @@
           React.DOM.hr null
           React.DOM.div
             className: 'row text-center'
-            React.createElement AmountBox, type: 'success', amount: @credits(), text: 'Credit'
-            React.createElement AmountBox, type: 'danger', amount: @debits(), text: 'Debit'
+            React.createElement AmountBox, type: 'success', amount: @credits(), text: 'Income'
+            React.createElement AmountBox, type: 'danger', amount: @debits(), text: 'Expenses'
             React.createElement AmountBox, type: 'info', amount: @balance(), text: 'Balance'
 
           React.DOM.table

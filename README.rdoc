@@ -1,28 +1,29 @@
-== README
+This is an expense tracking app built with Rails and React.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Installation
 
-Things you may want to cover:
+```
+git clone https://github.com/sanlouise/railsreact-expense-tracker
 
-* Ruby version
+bundle
 
-* System dependencies
+bundle exec rake db:migrate
 
-* Configuration
+rails s
+```
 
-* Database creation
+The app will now be running on localhost:3000.
 
-* Database initialization
+## Contributing
 
-* How to run the test suite
+1. Fork it!
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -am 'Add some feature'`
+4. Push to the branch: `git push origin my-new-feature`
+5. Submit a pull request :D
 
-* Services (job queues, cache servers, search engines, etc.)
+## Credits
 
-* Deployment instructions
+* [Sandra Adams-Hallie](https://github.com/sanlouise)
 
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+The app is largely built upon this amazing tutorial: <a href="http://www.airpair.com/reactjs/posts/reactjs-a-guide-for-rails-developers"> React.js - A guide for Rails developers </a>
