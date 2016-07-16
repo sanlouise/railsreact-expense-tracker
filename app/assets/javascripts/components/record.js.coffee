@@ -4,14 +4,30 @@
 	    handleToggle: (e) ->
 	      e.preventDefault()
 	      @setState edit: !@state.edit
-    handleDelete: (e) ->
-      e.preventDefault()
-      $.ajax
-        method: 'DELETE'
-        url: "/records/#{ @props.record.id }"
-        dataType: 'JSON'
-        success: () =>
-        @props.handleDeleteRecord @props.record
+  handleDelete: (e) ->
+    e.preventDefault()
+    $.ajax
+      method: 'DELETE'
+      url: "/records/#{ @props.record.id }"
+      dataType: 'JSON'
+      success: () =>
+      @props.handleDeleteRecord @props.record
+
+	handleEdit: (e) ->
+		e.preventDefault()
+		data =
+		  title: React.findDOMNode(@refs.title).value
+		  date: React.findDOMNode(@refs.date).value
+		  amount: React.findDOMNode(@refs.amount).value
+		$.ajax
+		  method: 'PUT'
+		  url: "/records/#{ @props.record.id }"
+		  dataType: 'JSON'
+		  data:
+		    record: data
+		  success: (data) =>
+		    @setState edit: false
+		    @props.handleEditRecord @props.record, data
 
    render: ->
     if @state.edit
