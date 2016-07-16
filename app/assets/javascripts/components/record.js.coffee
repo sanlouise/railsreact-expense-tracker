@@ -1,9 +1,11 @@
 @Record = React.createClass
-	getInitialState: ->
-	      edit: false
-	    handleToggle: (e) ->
-	      e.preventDefault()
-	      @setState edit: !@state.edit
+  getInitialState: ->
+    edit: false
+
+  handleToggle: (e) ->
+    e.preventDefault()
+    @setState edit: !@state.edit
+
   handleDelete: (e) ->
     e.preventDefault()
     $.ajax
@@ -11,29 +13,39 @@
       url: "/records/#{ @props.record.id }"
       dataType: 'JSON'
       success: () =>
-      @props.handleDeleteRecord @props.record
+        @props.handleDeleteRecord @props.record
 
-	handleEdit: (e) ->
-		e.preventDefault()
-		data =
-		  title: React.findDOMNode(@refs.title).value
-		  date: React.findDOMNode(@refs.date).value
-		  amount: React.findDOMNode(@refs.amount).value
-		$.ajax
-		  method: 'PUT'
-		  url: "/records/#{ @props.record.id }"
-		  dataType: 'JSON'
-		  data:
-		    record: data
-		  success: (data) =>
-		    @setState edit: false
-		    @props.handleEditRecord @props.record, data
+  handleEdit: (e) ->
+    e.preventDefault()
+    data =
+      title: @refs.title.value
+      date: @refs.date.value
+      amount: @refs.amount.value
+    # jQuery doesn't have a $.put shortcut method either
+    $.ajax
+      method: 'PUT'
+      url: "/records/#{ @props.record.id }"
+      dataType: 'JSON'
+      data:
+        record: data
+      success: (data) =>
+        @setState edit: false
+        @props.handleEditRecord @props.record, data
 
-   render: ->
-    if @state.edit
-      @recordForm()
-    else
-      @recordRow()
+  recordRow: ->
+    React.DOM.tr null,
+      React.DOM.td null, @props.record.date
+      React.DOM.td null, @props.record.title
+      React.DOM.td null, amountFormat(@props.record.amount)
+      React.DOM.td null,
+        React.DOM.a
+          className: 'btn btn-default btn-xs'
+          onClick: @handleToggle
+          'Edit'
+        React.DOM.a
+          className: 'btn btn-danger btn-xs'
+          onClick: @handleDelete
+          'Delete'
 
   recordForm: ->
     React.DOM.tr null,
@@ -65,17 +77,8 @@
           onClick: @handleToggle
           'Cancel'
 
-  	recordRow: ->
-    React.DOM.tr null,
-      React.DOM.td null, @props.record.date
-      React.DOM.td null, @props.record.title
-      React.DOM.td null, amountFormat(@props.record.amount)
-      React.DOM.td null,
-        React.DOM.a
-          className: 'btn btn-default btn-xs'
-          onClick: @handleToggle
-          'Edit'
-        React.DOM.a
-          className: 'btn btn-danger btn-xs'
-          onClick: @handleDelete
-          'Delete'
+  render: ->
+    if @state.edit
+      @recordForm()
+    else
+      @recordRow()
