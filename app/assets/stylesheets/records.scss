@@ -4,11 +4,24 @@
 
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 
-.records.col-md-10.col-md-offset-1 {
+html, body
+{
+    height: 100%;
+    background-image: url("http://streaming.yayimages.com/images/photographer/pakhnyushchyy/8fb4f73e6cc7564408574cf384454fcf/money-background.jpg");
+
+}
+
+.records {
+	background-color: white !important;
+}
+
+.records.col-md-6.col-md-offset-3 {
 	margin-top: 30px;
 	padding-top: 30px;
-	padding-bottom: 30px;
+	padding-bottom: 70px;
 	font-family: 'Roboto', sans-serif;
+	border: 1px solid black !important;
+	background-color: white !important;
 }
 
 .row {
@@ -20,8 +33,48 @@
 	padding-top: 15px;
 }
 
+.form-control {
+	border: 1px solid black !important;
+	border-radius: 0px !important;	
+}
+
+.btn-danger {
+	background-color: #F22613 !important;
+}
+
+.btn-xs {
+	margin-left: 10px;
+	border: 1px solid black !important;
+	border-radius: 0px !important;
+}
+
 .btn.btn-primary {
 	padding-left: 10px;
 	margin-bottom: -14px;
+	margin-top: 10px;
+	background-color: #1F4788 !important;
 }
 
+.panel {
+	border: 1px solid black !important;
+	border-radius: 0px !important;
+}
+
+.panel-heading {
+	font-size: 16px;
+	border-color: none !important;
+    border-radius: 0px !important;
+    color: white !important;
+}
+
+.panel-success > .panel-heading {
+    background-color: #26A65B !important;
+}
+
+.panel-danger > .panel-heading {
+    background-color: #F22613 !important;
+}
+
+.panel-info > .panel-heading {
+    background-color: #1F4788 !important;
+}
