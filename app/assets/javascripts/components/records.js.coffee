@@ -50,7 +50,7 @@
         React.createElement AmountBox, type: 'info', amount: @balance(), text: 'Balance'
 
       React.DOM.table
-        className: 'table table-bordered'
+        className: 'table table-striped'
         React.DOM.thead null,
           React.DOM.tr null,
             React.DOM.th null, 'Date'
