@@ -1,6 +1,6 @@
 this.RecordForm = React.createClass({
   
-  getInitialState: function() {
+  getInitialState() {
     return {
       title: '',
       date: '',
@@ -8,33 +8,31 @@ this.RecordForm = React.createClass({
     };
   },
 
-  valid: function() {
+  valid() {
     return this.state.title && this.state.date && this.state.amount;
   },
 
-  handleChange: function(e) {
-    var name, obj;
+  handleChange(e) {
+    let name, obj;
     name = e.target.name;
     return this.setState((
       obj = {},
-      obj["" + name] = e.target.value,
+      obj[`${name}`] = e.target.value,
       obj
     ));
   },
 
-  handleSubmit: function(e) {
+  handleSubmit(e) {
     e.preventDefault();
     return $.post('', {
       record: this.state
-    }, (function(_this) {
-      return function(data) {
-        _this.props.handleNewRecord(data);
-        return _this.setState(_this.getInitialState());
-      };
-    })(this), 'JSON');
+    }, ((_this => data => {
+      _this.props.handleNewRecord(data);
+      return _this.setState(_this.getInitialState());
+    }))(this), 'JSON');
   },
 
-  render: function() {
+  render() {
     return React.DOM.form({
       className: 'form-inline text-center',
       onSubmit: this.handleSubmit
