@@ -1,9 +1,9 @@
 this.AmountBox = React.createClass({
-  render: function() {
+  render() {
     return React.DOM.div({
       className: 'col-md-4'
     }, React.DOM.div({
-      className: "panel panel-" + this.props.type
+      className: `panel panel-${this.props.type}`
     }, React.DOM.div({
       className: 'panel-heading'
     }, this.props.text), React.DOM.div({
