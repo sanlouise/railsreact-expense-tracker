@@ -1,34 +1,29 @@
 this.Record = React.createClass({
-
-  getInitialState: function() {
+  getInitialState() {
     return {
       edit: false
     };
   },
 
-  handleToggle: function(e) {
+  handleToggle(e) {
     e.preventDefault();
     return this.setState({
       edit: !this.state.edit
     });
   },
 
-  handleDelete: function(e) {
+  handleDelete(e) {
     e.preventDefault();
     return $.ajax({
       method: 'DELETE',
-      url: "/records/" + this.props.record.id,
+      url: `/records/${this.props.record.id}`,
       dataType: 'JSON',
-      success: (function(_this) {
-        return function() {
-          return _this.props.handleDeleteRecord(_this.props.record);
-        };
-      })(this)
+      success: ((_this => () => _this.props.handleDeleteRecord(_this.props.record)))(this)
     });
   },
 
-  handleEdit: function(e) {
-    var data;
+  handleEdit(e) {
+    let data;
     e.preventDefault();
     data = {
       title: this.refs.title.value,
@@ -37,23 +32,21 @@ this.Record = React.createClass({
     };
     return $.ajax({
       method: 'PUT',
-      url: "/records/" + this.props.record.id,
+      url: `/records/${this.props.record.id}`,
       dataType: 'JSON',
       data: {
         record: data
       },
-      success: (function(_this) {
-        return function(data) {
-          _this.setState({
-            edit: false
-          });
-          return _this.props.handleEditRecord(_this.props.record, data);
-        };
-      })(this)
+      success: ((_this => data => {
+        _this.setState({
+          edit: false
+        });
+        return _this.props.handleEditRecord(_this.props.record, data);
+      }))(this)
     });
   },
 
-  recordRow: function() {
+  recordRow() {
     return React.DOM.tr(null, React.DOM.td(null, this.props.record.date), React.DOM.td(null, this.props.record.title), React.DOM.td(null, amountFormat(this.props.record.amount)), React.DOM.td(null, React.DOM.a({
       className: 'btn btn-default btn-xs',
       onClick: this.handleToggle
@@ -63,7 +56,7 @@ this.Record = React.createClass({
     }, 'Delete')));
   },
 
-  recordForm: function() {
+  recordForm() {
     return React.DOM.tr(null, React.DOM.td(null, React.DOM.input({
       className: 'form-control',
       type: 'text',
@@ -88,7 +81,7 @@ this.Record = React.createClass({
     }, 'Cancel')));
   },
 
-  render: function() {
+  render() {
     if (this.state.edit) {
       return this.recordForm();
     } else {
