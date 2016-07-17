@@ -1,2 +1,3 @@
-@amountFormat = (amount) ->
-  '$ ' + Number(amount).toLocaleString()
+this.amountFormat = function(amount) {
+  return '$ ' + Number(amount).toLocaleString();
+};
