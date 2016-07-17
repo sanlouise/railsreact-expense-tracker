@@ -1,3 +1,1 @@
-this.amountFormat = function(amount) {
-  return '$ ' + Number(amount).toLocaleString();
-};
+this.amountFormat = amount => `$ ${Number(amount).toLocaleString()}`;
